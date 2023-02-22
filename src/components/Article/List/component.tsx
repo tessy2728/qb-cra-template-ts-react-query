@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import ArticleCard from '../../ArticleCard/component'
+import React from 'react';
+import ArticleCard from '../Card/component'
 import { IArticle } from '../../../core/interfaces/article';
 import { getUserId } from '../../../core/utils/sessionHandler';
 import { useLoaderData } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { IAPIResponse } from '../../../core/interfaces/apiResponse';
 const ArticleList = () => {
     const data = (useLoaderData() as IAPIResponse<IArticle>);
     const articles: IArticle[] = data?.result;
-    console.log(articles)
+
     const userId = getUserId();
 
     return <div className="flex flex-column">

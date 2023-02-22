@@ -10,6 +10,7 @@ type ErrorResponse = {
 
 export const ErrorPage: FC = () => {
   const error = useRouteError() as ErrorResponse;
+  console.log(error)
   return (
     <div>
       <h1>Error!</h1>

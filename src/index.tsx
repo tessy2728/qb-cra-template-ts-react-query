@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
 import AuthProvider from './contexts/auth';
-import { RouterProvider } from 'react-router-dom';
-import router from './pages/routes';
 import { QUERY_CONFIG } from './core/config/queryConfig';
 import {
     QueryClient,
     QueryClientProvider
 } from 'react-query';
+import App from './App';
 
 
 const queryClient = new QueryClient({
@@ -19,12 +17,13 @@ const queryClient = new QueryClient({
         },
     },
 })
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
     <QueryClientProvider client={queryClient}>
         <AuthProvider>
             <React.StrictMode>
-                <RouterProvider router={router} />
+                <App />
             </React.StrictMode>
         </AuthProvider>
     </QueryClientProvider>

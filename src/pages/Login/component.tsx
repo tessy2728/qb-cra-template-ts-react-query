@@ -9,6 +9,7 @@ import { useQueryClient } from 'react-query'
 import { hideToaster, IToast } from '../../core/utils/toast';
 import Alert from '../../components/Alert';
 import { isObject } from '../../core/utils/utils';
+
 const LoginComponent: FC<any> = (props) => {
     const navigate = useNavigate();
     const [loginError, setLoginError] = useState('');
@@ -16,8 +17,8 @@ const LoginComponent: FC<any> = (props) => {
     const [password, setPassword] = useState('');
     const { data, error, mutate: login, isSuccess: isLoginSuccess, isError: isLoginrror, isLoading }: IMutationResponse = useAuthLogin({ email: email, password: password })
     const queryClient = useQueryClient();
-    const alertConfig: IToast = queryClient.getQueryCache().find('TOAST')?.state.data as IToast
-    console.log(alertConfig, queryClient.getQueryCache())
+    const alertConfig: IToast = queryClient.getQueryData('TOAST') as IToast;
+
     useEffect(() => {
         if (isLoggedIn()) {
             setPassword('');
@@ -38,6 +39,7 @@ const LoginComponent: FC<any> = (props) => {
         e.preventDefault();
         login();
     };
+
     useEffect(() => {
         if (isLoginSuccess) {
             const { result, token } = data;
@@ -48,7 +50,6 @@ const LoginComponent: FC<any> = (props) => {
                 ...state,
                 user: { name: result.name, accessToken: token, userDetails: result }
             }))
-            console.log(queryClient)
         }
 
     }, [isLoginSuccess, data])
@@ -56,7 +57,6 @@ const LoginComponent: FC<any> = (props) => {
     useEffect(() => {
         if (isLoginrror)
             setLoginError(error.data.message)
-
     }, [isLoginrror, error])
 
     return (

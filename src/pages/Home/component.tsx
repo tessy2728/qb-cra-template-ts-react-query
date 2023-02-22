@@ -9,7 +9,7 @@ import { getUserName } from '../../core/utils/sessionHandler';
 const Home = () => {
     const queryClient = useQueryClient();
     const dataRes = queryClient.getMutationCache().find({ mutationKey: AUTH.LOGIN.key })?.state.data as IDetailsAPIResponse<IUser>
-    console.log(dataRes)
+
     return <div className="flex flex-column">
         <h1 className="text-left">Welcome {dataRes?.result?.name ?? getUserName()}!</h1>
         <Outlet />
