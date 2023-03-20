@@ -1,9 +1,9 @@
 import React from 'react';
-import ArticleCard from '../Card/component'
-import { IArticle } from '../../../core/interfaces/article';
-import { getUserId } from '../../../core/utils/sessionHandler';
 import { useLoaderData } from 'react-router-dom';
-import { IAPIResponse } from '../../../core/interfaces/apiResponse';
+import { IAPIResponse } from '../../../../core/interfaces/apiResponse';
+import { IArticle } from '../../../../core/interfaces/article';
+import { getUserId } from '../../../../core/utils/sessionHandler';
+import ArticleCard from '../Card/component'
 
 const ArticleList = () => {
     const data = (useLoaderData() as IAPIResponse<IArticle>);

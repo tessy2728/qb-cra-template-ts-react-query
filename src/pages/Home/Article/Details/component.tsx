@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { IAPIResponse } from '../../../core/interfaces/apiResponse';
-import { IArticle } from '../../../core/interfaces/article';
+import { IAPIResponse } from '../../../../core/interfaces/apiResponse';
+import { IArticle } from '../../../../core/interfaces/article';
 import { ArticleBody, ArticleHeader, ArticleImage, Divider } from '../style';
 
 const ArticleDetails = () => {

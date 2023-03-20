@@ -1,15 +1,15 @@
 import React, { useEffect, useState, FC, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Wrapper from './style';
-import Loader from '../../components/Loader';
-import { useAuthLogin } from '../../hooks/api/auth';
-import { setUserSession, isLoggedIn } from '../../core/utils/sessionHandler';
-import { IMutationResponse } from '../../core/interfaces/mutation';
+import Loader from '../../../components/Loader';
+import { useAuthLogin } from '../../../hooks/api/auth';
+import { setUserSession, isLoggedIn } from '../../../core/utils/sessionHandler';
+import { IMutationResponse } from '../../../core/interfaces/mutation';
 import { useQueryClient } from 'react-query'
-import { hideToaster, IToast } from '../../core/utils/toast';
-import Alert from '../../components/Alert';
-import { isObject } from '../../core/utils/utils';
-
+import { hideToaster, IToast } from '../../../core/utils/toast';
+import Alert from '../../../components/Alert';
+import { isObject } from '../../../core/utils/utils';
+import { Form } from 'react-router-dom';
 const LoginComponent: FC<any> = (props) => {
     const navigate = useNavigate();
     const [loginError, setLoginError] = useState('');
@@ -64,7 +64,7 @@ const LoginComponent: FC<any> = (props) => {
             {isObject(alertConfig) && alertConfig?.message && <Alert {...alertConfig} clearAlert={() => hideToaster(queryClient)}></Alert>}
 
             {!isLoading && <section>
-                <form className="login-form" onSubmit={onSubmit}>
+                <Form className="login-form" method="post" >
                     <h1>Welcome to FEED!</h1>
                     <input
                         autoFocus
@@ -86,7 +86,7 @@ const LoginComponent: FC<any> = (props) => {
                     <button type="submit" disabled={!email || !password}>
                         Sign in
                     </button>
-                </form>
+                </Form>
                 <p className="error">{loginError}</p>
                 <div className="signup">
                     Don&apos;t have an account? <a href="/signup">Sign up</a>

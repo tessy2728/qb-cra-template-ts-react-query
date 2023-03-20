@@ -2,7 +2,7 @@ import { useQuery, useMutation } from 'react-query';
 import { postData } from '../../core/api';
 import { AUTH } from '../../core/config/apiConfig';
 
-interface IAuthParams {
+export interface IAuthParams {
     email: string;
     password: string;
 }
