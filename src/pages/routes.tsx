@@ -24,11 +24,8 @@ const router = createBrowserRouter([
       element: <Login />,
       action: async ({ request, params }) => {
         const formData = await request.formData();
-        console.log(Object.fromEntries(formData))
-        const postParams: IAuthParams = Object.fromEntries(formData) as unknown as IAuthParams
-        // let name = formData.get("projectName");
+        const postParams: IAuthParams = Object.fromEntries(formData) as unknown as IAuthParams;
         const res = await authUser(postParams);
-        console.log(res)
         if (res.status === 200) {
           const { result, token } = res as unknown as IPostAPIResponse<IUser>;
           setUserSession({ name: result.name, accessToken: token, userDetails: result });
@@ -46,7 +43,6 @@ const router = createBrowserRouter([
       element: <Home />,
       loader: async () => {
         const isSignedIn = isLoggedIn();
-        console.log('loggedin', isSignedIn)
         if (!isSignedIn) {
           return redirect("/");
         }
